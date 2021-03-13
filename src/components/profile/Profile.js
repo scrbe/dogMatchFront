@@ -64,7 +64,7 @@ function UserProfile() {
             );
           })}
       </div>
-      <h2>Create your Dog:</h2>
+      <h2>Create your own Dog:</h2>
       <DogForm></DogForm>
     </div>
   );
