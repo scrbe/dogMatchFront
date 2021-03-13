@@ -2,19 +2,39 @@ import React from 'react'
 import AuthForm from '../components/auth/Auth'
 import { useParams, Redirect, useHistory } from 'react-router-dom'
 import {login, signup} from '../service/auth.service'
+import { useAuth } from '../context/AuthContext'
 
 function Auth() {
     const { auth } = useParams()
     const { push } = useHistory()
+    const { setUser } = useAuth()
     
     const handleLogin = async (user) => {
-        await login(user)
-        push('/')
+        try {
+            const { data } = await login(user)
+            console.log(data)
+            localStorage.setItem('user', JSON.stringify(data.user))
+            console.log('data.user -->', data.user)
+            setUser({ user: data.user });
+            push('/')
+        } catch (error) {
+            console.log(error);
+        }
+        console.log(user)
     }
 
     const handleSignUp = async (user) => {
-        await signup(user)
-        push('/')
+        try {
+            const { data } = await signup(user)
+            console.log(data)
+            localStorage.setItem('user', JSON.stringify(data.user))
+            console.log('data.user -->', data.user)
+            setUser({ user: data.user });
+            push('/')
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     if (auth === 'login') {

@@ -15,7 +15,7 @@ function DogDetails() {
   
     React.useEffect(() => {
         getOneDog(dogId);
-    },[]);
+    },[dogId]);
     
   return (
       <div key={dog._id}>

@@ -13,9 +13,9 @@ function Auth({ buttonText, onSubmit }) {
     return (
         <form>
             <label htmlFor='email'>Email</label>
-            <input name='email' type='email' value={state.email} onChange={handleChange}></input>
+            <input name='email' type='email' value={state.email} onChange={handleChange} required></input>
             <label htmlFor='password'>Password</label>
-            <input name='password' type='password' value={state.password} onChange={handleChange}></input>
+            <input name='password' type='password' value={state.password} onChange={handleChange} required></input>
             <button onSubmit={handleSubmit}>{buttonText}</button>
         </form>
     )
