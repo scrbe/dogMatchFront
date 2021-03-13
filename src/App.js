@@ -8,6 +8,7 @@ import Signup from "./views/Signup";
 import Login from "./views/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/profile/Profile";
+import Home from "./views/Home";
 import "./App.css";
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
     <div className="App">
       <Navbar></Navbar>
       <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
         <Route exact path="/dogs">
           <DogList />
         </Route>

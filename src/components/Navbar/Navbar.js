@@ -17,10 +17,17 @@ function Navbar() {
       <Link to={"/"}>
         <img src={pawImg} alt="logo" id="logo"></img>
       </Link>
-      <Link to={`/profile/${user.id}`}>
-        <img src={profileIcon} alt="logo" id="logo"></img>
-      </Link>
-      {user.isLogged && <Logout>Logout</Logout>}
+
+      {user.isLogged && (
+        <div>
+          {" "}
+          <Link to={`/profile/${user.id}`}>
+            <img src={profileIcon} alt="logo" id="logo"></img>
+          </Link>
+          <Logout>Logout</Logout>{" "}
+        </div>
+      )}
+      {user.isLogged || <Link to="/login">Login</Link>}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { getOneDogService } from "../../service/dog.service";
 import { addToFavoritesService } from "../../service/user.service";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.utils";
+import MessageForm from "../form/MessageForm";
 
 function DogDetails() {
   const { user } = useAuth();
@@ -42,10 +43,7 @@ function DogDetails() {
       )}
       <div>
         <h4>Send a request</h4>
-        <form>
-          <textarea></textarea>
-          <button>Submit</button>
-        </form>
+        <MessageForm></MessageForm>
       </div>
     </div>
   );

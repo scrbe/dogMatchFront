@@ -2,6 +2,7 @@ import React from "react";
 import { getUserService } from "../../service/user.service";
 import { useParams } from "react-router-dom";
 import DogForm from "../form/DogForm";
+
 function UserProfile() {
   const params = useParams();
   const { userId } = params;
