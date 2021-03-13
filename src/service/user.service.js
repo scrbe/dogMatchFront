@@ -11,4 +11,4 @@ export const getUserService = (userId) => {
 
 export const updateUserService = (userId) => api.post(`/${userId}`, userId);
 
-export const addToFavoritesService = (dogId) => api.put(`/${dogId}`, dogId);
+export const addToFavoritesService = (dogId) => api.patch(`/${dogId}`, dogId);

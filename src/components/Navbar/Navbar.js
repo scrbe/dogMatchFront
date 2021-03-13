@@ -9,6 +9,7 @@ function Navbar() {
 
   const pawImg =
     "https://www.kindpng.com/picc/m/195-1951786_purple-dog-paw-print-hd-png-download.png";
+  //   const pawImg = "../../../public/DogMatch-icon.png";
   const profileIcon =
     "https://i.pinimg.com/736x/3f/94/70/3f9470b34a8e3f526dbdb022f9f19cf7.jpg";
 
