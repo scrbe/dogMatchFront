@@ -1,14 +1,14 @@
 import React from "react";
-import Form from "../components/form/Form";
+import Profile from "../components/profile/Profile";
 import { useAuth } from "../context/AuthContext.utils";
 
-function Login() {
+function ProfileView() {
   const { handleLogin } = useAuth();
   const handleSubmit = async (userForm) => {
     handleLogin(userForm);
     localStorage.setItem("isLogged", "true");
   };
-  return <Form buttonText="login" onSubmit={handleSubmit}></Form>;
+  return <Profile buttonText="login" onSubmit={handleSubmit}></Profile>;
 }
 
-export default Login;
+export default ProfileView;

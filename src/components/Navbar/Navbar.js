@@ -1,9 +1,12 @@
 import React from "react";
 import Logout from "../auth/Logout";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext.utils";
 import "./navbar.css";
 
 function Navbar() {
+  const { user } = useAuth();
+
   const pawImg =
     "https://www.kindpng.com/picc/m/195-1951786_purple-dog-paw-print-hd-png-download.png";
   const profileIcon =
@@ -14,10 +17,10 @@ function Navbar() {
       <Link to={"/"}>
         <img src={pawImg} alt="logo" id="logo"></img>
       </Link>
-      <Link to={"/profile"}>
+      <Link to={`/profile/${user.id}`}>
         <img src={profileIcon} alt="logo" id="logo"></img>
       </Link>
-      <Logout>Logout</Logout>
+      {user.isLogged && <Logout>Logout</Logout>}
     </div>
   );
 }

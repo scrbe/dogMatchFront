@@ -1,4 +1,5 @@
 import React from "react";
+import createDogService from "../service/dog.service";
 import { login, logout, signup } from "../service/auth.service";
 import {
   getLocalUser,
@@ -46,6 +47,16 @@ function AuthProvider({ children }) {
     }
   }, []);
 
+  const handleDogForm = React.useCallback(async (user) => {
+    try {
+      const { data: loggedUser } = await login(user);
+      saveUser(loggedUser);
+      setState({ user: { ...loggedUser, isLogged: true } });
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -53,6 +64,7 @@ function AuthProvider({ children }) {
         handleLogin,
         handleLogout,
         handleSignup,
+        handleDogForm,
         setState,
       }}
     >
