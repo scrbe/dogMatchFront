@@ -1,7 +1,6 @@
 import React from "react";
 import { getOneDogService } from "../../service/dog.service";
 import { addToFavoritesService } from "../../service/user.service";
-import { getUserService } from "../../service/user.service";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.utils";
 import MessageForm from "../form/MessageForm";

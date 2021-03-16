@@ -1,9 +1,6 @@
 import React from "react";
-import { createDogService } from "../../service/dog.service";
-import { useAuth } from "../../context/AuthContext.utils";
 
 function DogForm({ onSubmit }) {
-  const { user } = useAuth();
   const initialState = {
     name: "",
     breed: "",
@@ -12,6 +9,7 @@ function DogForm({ onSubmit }) {
     description: "",
     dogImage: "",
   };
+
   const [state, setState] = React.useState(initialState);
   const handleChange = ({ target }) => {
     setState({ ...state, [target.name]: target.value });
@@ -61,7 +59,7 @@ function DogForm({ onSubmit }) {
         name="description"
         cols="30"
         rows="3"
-        value={state.age}
+        value={state.description}
         onChange={handleChange}
       ></textarea>
       <label htmlFor="dog-image">Upload Image</label>

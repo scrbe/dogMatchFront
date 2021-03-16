@@ -2,6 +2,7 @@ import React from "react";
 import { getUserService } from "../../service/user.service";
 import { useParams } from "react-router-dom";
 import DogForm from "../form/DogForm";
+import { createDogService } from "../../service/dog.service";
 
 function UserProfile() {
   const params = useParams();
@@ -17,6 +18,10 @@ function UserProfile() {
   React.useEffect(() => {
     getUser(userId);
   }, [userId]);
+
+  const handleSubmit = async (dogForm) => {
+    createDogService(dogForm);
+  };
 
   return (
     <div key={user._id}>
@@ -67,7 +72,7 @@ function UserProfile() {
       </div>
       <div>
         <h2>Create your own Dog:</h2>
-        <DogForm></DogForm>
+        <DogForm onSubmit={handleSubmit}></DogForm>
       </div>
     </div>
   );
