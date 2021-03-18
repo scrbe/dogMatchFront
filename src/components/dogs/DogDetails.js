@@ -1,9 +1,13 @@
 import React from "react";
 import { getOneDogService } from "../../service/dog.service";
 import { addToFavoritesService } from "../../service/user.service";
+import { deleteDogService } from "../../service/user.service";
+import { updateDogService } from "../../service/user.service";
+import { getUserService } from "../../service/user.service.js";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.utils";
 import MessageForm from "../form/MessageForm";
+import DogForm from "../form/DogForm";
 
 function DogDetails() {
   const { user } = useAuth();
@@ -11,6 +15,18 @@ function DogDetails() {
   const params = useParams();
   const { dogId } = params;
   const [dog, setDog] = React.useState([]);
+  const [dogUser, setUser] = React.useState(false);
+  const [editForm, setEditForm] = React.useState(false);
+
+  const getUser = async (userId) => {
+    const { data: userInfo } = await getUserService(userId);
+    console.log("USERINFO -->", userInfo);
+    setUser(userInfo);
+  };
+
+  const isOwnedDog = dogUser.ownedDogs;
+  console.log("isOwnedDog", isOwnedDog);
+  // isOwnedDog.filter((dog) => (dog._id = dogId));
 
   const getOneDog = async (dogId) => {
     const { data: dog } = await getOneDogService(dogId);
@@ -21,10 +37,22 @@ function DogDetails() {
     await addToFavoritesService(dogId);
   };
 
-  // const isDogFavorite = user.favoriteDogs.includes(dogId)
+  const handleEditFormDisplay = async () => {
+    setEditForm(!editForm);
+  };
+
+  // const handleDelete = async (dogId) => {
+  //   await deleteDogService(dogId);
+  // };
+
+  // const handleUpdate= async (dogId) => {
+  //   await updateDogService(dogId);
+  // };
+
   React.useEffect(() => {
+    getUser(user.id);
     getOneDog(dogId);
-  }, [dogId]);
+  }, [dogId, user.id]);
 
   return (
     <div>
@@ -47,6 +75,24 @@ function DogDetails() {
         <h4>Send a request</h4>
         <MessageForm></MessageForm>
       </div>
+      {/* <div>
+        {isOwnedDog && (
+          <form onSubmit={handleUpdate}>
+            <button type="submit">Delete Dog</button>
+          </form>
+        )}
+      </div> */}
+      {/* <div>
+        {isOwnedDog && (
+          <form onSubmit={}>
+          if(editForm){
+          return <Dogform onSubmit={handleDelete}>    
+          </Dogform>
+          } 
+          </form>
+            
+        )}
+      </div> */}
     </div>
   );
 }

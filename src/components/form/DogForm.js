@@ -1,4 +1,5 @@
 import React from "react";
+import { addImageService } from "../../service/dog.service";
 
 function DogForm({ onSubmit }) {
   const initialState = {
@@ -11,9 +12,24 @@ function DogForm({ onSubmit }) {
   };
 
   const [state, setState] = React.useState(initialState);
+  const [image, setImage] = React.useState(false);
   const handleChange = ({ target }) => {
     setState({ ...state, [target.name]: target.value });
   };
+
+  const handleUpload = async (event) => {
+    setImage(false); // por qué hacemos esto si este es el estado inicial ? setImage(false) --> setImage(true)
+    const img = event.target.files;
+    console.log("IMG -->", img);
+    const uploadImg = new FormData();
+    uploadImg.append("dogImage", img[0]);
+    console.log("uploadImg -->", uploadImg);
+    const { data } = await addImageService(uploadImg);
+    console.log("Image -->", data);
+    setState({ ...state, dogImage: data });
+    setImage(!image);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     onSubmit(state);
@@ -62,8 +78,13 @@ function DogForm({ onSubmit }) {
         value={state.description}
         onChange={handleChange}
       ></textarea>
-      <label htmlFor="dog-image">Upload Image</label>
-      <input type="file" name="dog-image"></input>
+      <label htmlFor="image">Upload Image</label>
+      <input
+        type="file"
+        name="image"
+        value={state.image}
+        onChange={handleUpload}
+      ></input>
       <button type="submit">Submit</button>
     </form>
   );
