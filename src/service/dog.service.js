@@ -11,6 +11,7 @@ export const getOneDogService = (dogId) => {
   return data;
 };
 export const createDogService = (dogBody) => api.post("/", dogBody);
-export const updateDogService = (dogId) => api.post("/:dogId", dogId);
-export const deleteDogService = (dogId) => api.post("/:dogId", dogId);
+export const updateDogService = (dogId, dogBody) =>
+  api.put(`/${dogId}`, dogBody);
+export const deleteDogService = (dogId) => api.delete(`/${dogId}`);
 export const addImageService = (image) => api.post("/upload", image);

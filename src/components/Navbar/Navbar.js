@@ -9,16 +9,17 @@ function Navbar() {
 
   const pawImg =
     "https://www.kindpng.com/picc/m/195-1951786_purple-dog-paw-print-hd-png-download.png";
-  //   const pawImg = "../../../public/DogMatch-icon.png";
   const profileIcon =
     "https://i.pinimg.com/736x/3f/94/70/3f9470b34a8e3f526dbdb022f9f19cf7.jpg";
   const dogIcon =
     "https://pupuphooray.com/wp-content/uploads/2019/03/dog-icon.png";
   return (
     <div className="navbar">
-      <Link to={"/"}>
-        <img src={pawImg} alt="logo" id="logo"></img>
-      </Link>
+      <div>
+        <Link to={"/"}>
+          <img src={pawImg} alt="logo" id="logo"></img>
+        </Link>
+      </div>
 
       {user.isLogged && (
         <div>

@@ -8,7 +8,7 @@ function DogForm({ onSubmit }) {
     age: "",
     gender: "",
     description: "",
-    dogImage: "",
+    image: "",
   };
 
   const [state, setState] = React.useState(initialState);
@@ -27,7 +27,7 @@ function DogForm({ onSubmit }) {
     const { data } = await addImageService(uploadImg);
     console.log("Image -->", data);
     setState({ ...state, dogImage: data });
-    setImage(!image);
+    setImage(true);
   };
 
   const handleSubmit = (event) => {
@@ -85,7 +85,9 @@ function DogForm({ onSubmit }) {
         value={state.image}
         onChange={handleUpload}
       ></input>
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={!image}>
+        Submit
+      </button>
     </form>
   );
 }

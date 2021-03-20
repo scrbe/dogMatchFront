@@ -22,7 +22,7 @@ function App() {
         <Route exact path="/dogs">
           <DogList />
         </Route>
-        <Route path="/dogs/:dogId">
+        <Route exact path="/dogs/:dogId">
           <DogDetails />
         </Route>
         <PrivateRoute path="/profile/:userId">

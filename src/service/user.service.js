@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: `${process.env.REACT_APP_API}/api/dogs`,
+  baseURL: `${process.env.REACT_APP_API}/api/user`,
   withCredentials: true,
 });
 

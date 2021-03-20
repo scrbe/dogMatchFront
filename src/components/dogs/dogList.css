@@ -1,12 +1,13 @@
 .dog-list {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .dog-card {
-  width: 40%;
+  height: 50%;
+  width: 35%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,6 +22,34 @@
 
 .dog-img {
   width: 100%;
-  height: 60%;
+  height: 200px;
   border-radius: 10px;
+}
+
+.view-button {
+  align-self: center;
+  text-decoration: none;
+  background-color: #46046f;
+  padding: 10px 14px;
+  color: white;
+  text-align: center;
+  border-radius: 25px;
+  margin: 20px 0px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 2px solid #46046f;
+}
+
+.view-button:hover {
+  align-self: center;
+  text-decoration: none;
+  border: 2px solid #46046f;
+  background-color: white;
+  padding: 10px 14px;
+  color: #46046f;
+  text-align: center;
+  border-radius: 25px;
+  margin: 20px 0px;
+  font-size: 13px;
+  font-weight: 600;
 }

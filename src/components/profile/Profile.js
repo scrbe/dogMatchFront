@@ -21,13 +21,20 @@ function UserProfile() {
   }, [userId]);
 
   const handleSubmit = async (dogForm) => {
-    createDogService(dogForm);
+    const { data: newDog } = await createDogService(dogForm);
+    console.log("NEWDOG-->", newDog);
+    // podría llamar a getUser, pero para evitar una llamada adicional a la BD:
+    const updatedUser = { ...user, ownedDogs: [...user.ownedDogs, newDog] };
+    setUser(updatedUser);
   };
 
   return (
     <div key={user._id}>
       <div>
-        <img src={user.userImage} alt={user.email} className="img"></img>
+        {user && (
+          <img src={user.userImage} alt={user.email} className="img"></img>
+        )}
+
         <h4>Email: {user.email}</h4>
       </div>
       <div>
