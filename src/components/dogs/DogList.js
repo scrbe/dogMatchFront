@@ -16,10 +16,10 @@ function DogList() {
   }, []);
 
   return (
-    <div>
+    <div className="dog-list">
       {dogState.map((dog) => {
         return (
-          <div key={dog._id}>
+          <div key={dog._id} className="dog-card">
             <img src={dog.dogImage} alt={dog.name} className="dog-img"></img>
             <h2>Name: {dog.name}</h2>
             <h3>Age: {dog.age} years old</h3>

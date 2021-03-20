@@ -3,6 +3,7 @@ import { getUserService } from "../../service/user.service";
 import { useParams } from "react-router-dom";
 import DogForm from "../form/DogForm";
 import { createDogService } from "../../service/dog.service";
+import { Link } from "react-router-dom";
 
 function UserProfile() {
   const params = useParams();
@@ -36,7 +37,10 @@ function UserProfile() {
             return (
               <div key={dog._id}>
                 <img src={dog.dogImage} alt={dog.name} className="img"></img>
-                <h4>Name: {dog.name}</h4>
+
+                <h4>
+                  <Link to={`/dogs/${dog._id}`}>Name: {dog.name}</Link>
+                </h4>
                 <p>Age: {dog.age} years old</p>
                 <p>Breed: {dog.breed}</p>
               </div>
@@ -45,6 +49,7 @@ function UserProfile() {
       </div>
       <div>
         <h2>User's Favorite Dogs:</h2>
+
         {user.favoriteDogs &&
           user.favoriteDogs.map((dog) => {
             return (
@@ -59,6 +64,7 @@ function UserProfile() {
       </div>
       <div>
         <h2>User's Requests:</h2>
+
         {user.requests &&
           user.requests.map((request) => {
             return (
