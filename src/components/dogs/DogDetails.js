@@ -56,7 +56,7 @@ function DogDetails() {
     <div className="dog-detail-view">
       <div key={dog._id} className="dog-detail-card">
         <div className="img-container">
-          <h2>Name: {dog.name}</h2>
+          <h2 className="dog-title">{dog.name}</h2>
           <img
             src={dog.dogImage}
             alt={dog.name}
@@ -65,12 +65,18 @@ function DogDetails() {
         </div>
 
         <div className="dog-detail-text">
-          <h3>Age: {dog.age} years old</h3>
-          <h3>Breed: {dog.breed}</h3>
-          <h3>Gender: {dog.gender}</h3>
+          <h3>
+            Age: <span className="dog-info">{dog.age} years old</span>
+          </h3>
+          <h3>
+            Breed: <span className="dog-info">{dog.breed}</span>
+          </h3>
+          <h3>
+            Gender: <span className="dog-info">{dog.gender}</span>
+          </h3>
           <div className="dog-description">
             <h3>Description:</h3>
-            <p>{dog.description}</p>
+            <p className="dog-info">{dog.description}</p>
           </div>
           {user.favoriteDogs || (
             <button onClick={handleClick} className="fav-button">

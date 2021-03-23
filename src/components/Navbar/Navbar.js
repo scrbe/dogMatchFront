@@ -20,19 +20,25 @@ function Navbar() {
           <img src={pawImg} alt="logo" id="logo"></img>
         </Link>
       </div>
+      <div>
+        <Link to={"/dogs"}>
+          <img src={dogIcon} alt="logo" id="logo"></img>
+        </Link>
+      </div>
 
       {user.isLogged && (
-        <div>
-          <Link to={"/dogs"}>
-            <img src={dogIcon} alt="logo" id="logo"></img>
-          </Link>
+        <div className="navbar-int-container">
           <Link to={`/profile/${user.id}`}>
             <img src={profileIcon} alt="logo" id="logo"></img>
           </Link>
-          <Logout>Logout</Logout>{" "}
+          <Logout className="logout-button">Logout</Logout>
         </div>
       )}
-      {user.isLogged || <Link to="/login">Login</Link>}
+      {user.isLogged || (
+        <Link to="/login" className="logout-button">
+          Login
+        </Link>
+      )}
     </div>
   );
 }

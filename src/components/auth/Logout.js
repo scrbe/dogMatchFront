@@ -8,7 +8,9 @@ function Logout() {
   };
   return (
     <div>
-      <button onClick={handleSubmit}>Logout</button>
+      <button onClick={handleSubmit} className="logout-button">
+        Logout
+      </button>
     </div>
   );
 }

@@ -10,8 +10,6 @@
   width: 35%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   margin: 20px 20px 10px 20px;
   border-radius: 10px;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -23,7 +21,20 @@
 .dog-img {
   width: 100%;
   height: 200px;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.dog-details {
+  padding-left: 10px;
+}
+
+.dog-title {
+  color: #46046f;
+}
+
+.dog-info {
+  font-weight: 300;
 }
 
 .view-button {

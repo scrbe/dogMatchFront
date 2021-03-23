@@ -4,9 +4,39 @@
 }
 
 #logo {
-  width: 45px;
+  width: 50px;
+  margin: auto;
 }
 
-/* #logout{
+.logout-button {
+  align-self: center;
+  text-decoration: none;
+  background-color: #46046f;
+  padding: 10px 14px;
+  color: white;
+  text-align: center;
+  border-radius: 25px;
+  margin: 20px 0px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 2px solid #46046f;
+}
 
-} */
+.logout-button:hover {
+  align-self: center;
+  text-decoration: none;
+  border: 2px solid #46046f;
+  background-color: white;
+  padding: 10px 14px;
+  color: #46046f;
+  text-align: center;
+  border-radius: 25px;
+  margin: 20px 0px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.navbar-int-container {
+  display: flex;
+  justify-content: center;
+}

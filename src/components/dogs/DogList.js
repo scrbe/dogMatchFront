@@ -20,13 +20,27 @@ function DogList() {
       {dogState.map((dog) => {
         return (
           <div key={dog._id} className="dog-card">
-            <Link to={`/dogs/${dog._id}`}>
-              <img src={dog.dogImage} alt={dog.name} className="dog-img"></img>
-            </Link>
-            <h2>Name: {dog.name}</h2>
-            <h3>Age: {dog.age} years old</h3>
-            <h3>Breed: {dog.breed}</h3>
-            <h3>Gender: {dog.gender}</h3>
+            <div>
+              <Link to={`/dogs/${dog._id}`}>
+                <img
+                  src={dog.dogImage}
+                  alt={dog.name}
+                  className="dog-img"
+                ></img>
+              </Link>
+            </div>
+            <div className="dog-details">
+              <h2 className="dog-title">{dog.name}</h2>
+              <h3>
+                Age: <span className="dog-info">{dog.age} years old</span>
+              </h3>
+              <h3>
+                Breed: <span className="dog-info">{dog.breed}</span>
+              </h3>
+              <h3>
+                Gender: <span className="dog-info">{dog.gender}</span>
+              </h3>
+            </div>
             <Link className="view-button" to={`/dogs/${dog._id}`}>
               View details
             </Link>
