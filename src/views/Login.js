@@ -2,6 +2,7 @@ import React from "react";
 import Form from "../components/form/Form";
 import { useAuth } from "../context/AuthContext.utils";
 import { Link } from "react-router-dom";
+import "./login.css";
 
 function Login() {
   const { handleLogin } = useAuth();
@@ -10,10 +11,14 @@ function Login() {
     localStorage.setItem("isLogged", "true");
   };
   return (
-    <div>
-      <Form buttonText="login" onSubmit={handleSubmit}></Form>
-      <p>Don't have an account yet? </p>
-      <Link to="/signup">Create an account</Link>
+    <div className="log-container">
+      <h2>Log in</h2>
+      <p>
+        New to DogMatch ? <Link to="/signup">Sign up for free!</Link>
+      </p>
+      <div className="form-fields">
+        <Form buttonText="login" onSubmit={handleSubmit}></Form>
+      </div>
     </div>
   );
 }

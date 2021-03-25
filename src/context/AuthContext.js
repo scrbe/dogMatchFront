@@ -53,7 +53,7 @@ function AuthProvider({ children }) {
         handleLogin,
         handleLogout,
         handleSignup,
-        setState,
+        setUser: setState,
       }}
     >
       {children}

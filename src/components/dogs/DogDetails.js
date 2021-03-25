@@ -3,33 +3,50 @@ import { getOneDogService } from "../../service/dog.service";
 import { addToFavoritesService } from "../../service/user.service";
 import { deleteDogService } from "../../service/dog.service";
 import { updateDogService } from "../../service/dog.service";
-// import { getUserService } from "../../service/user.service.js";
+import { getUserService } from "../../service/user.service.js";
 import { useParams, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.utils";
 import MessageForm from "../form/MessageForm";
+import { sendMessagesService } from "../../service/message.service";
 import DogForm from "../form/DogForm";
 import "./dogDetails.css";
 
 function DogDetails() {
   const { user } = useAuth();
   const { push } = useHistory();
-  console.log("USER-->", user);
   const params = useParams();
   const { dogId } = params;
+  console.log("USER-->", user);
+
   const [dog, setDog] = React.useState([]);
   const [editForm, setEditForm] = React.useState(false);
+  const [isFav, setIsFav] = React.useState(false);
 
   const getOneDog = async (dogId) => {
     const { data: dog } = await getOneDogService(dogId);
     console.log("DOG -->", dog);
     setDog(dog);
+    let userInfo = await getUser();
+    userInfo.favoriteDogs.forEach((dog) => {
+      if (dog._id === dogId) {
+        setIsFav(true);
+      }
+    });
+    console.log("userInfo :>> ", userInfo);
+  };
+
+  const getUser = async () => {
+    const { data: userInfo } = await getUserService(user.id);
+    console.log("userInfo :>> ", userInfo);
+    return userInfo;
   };
 
   let isDogOwner = user.id === dog.owner;
   console.log("isDogOwner", isDogOwner);
 
   const handleClick = async () => {
-    await addToFavoritesService(dogId);
+    const { data } = await addToFavoritesService(dogId);
+    setIsFav(data.isFavorite);
   };
 
   const handleEditFormDisplay = async () => {
@@ -48,9 +65,14 @@ function DogDetails() {
     console.log("dog updated");
   };
 
+  const handleSendMessage = async (messageBody) => {
+    const { data: newMessage } = await sendMessagesService(dogId, messageBody);
+    console.log("NEWMESSAGE-->", newMessage);
+  };
+
   React.useEffect(() => {
     getOneDog(dogId);
-  }, [dogId, user.id]);
+  }, [dogId]);
 
   return (
     <div className="dog-detail-view">
@@ -78,12 +100,12 @@ function DogDetails() {
             <h3>Description:</h3>
             <p className="dog-info">{dog.description}</p>
           </div>
-          {user.favoriteDogs || (
+          {isFav || (
             <button onClick={handleClick} className="fav-button">
               Add to Favorites
             </button>
           )}
-          {user.favoriteDogs && (
+          {isFav && (
             <button onClick={handleClick} className="fav-button">
               Remove from Favorites
             </button>
@@ -92,7 +114,7 @@ function DogDetails() {
       </div>
       <div>
         <h4>Send a request</h4>
-        <MessageForm></MessageForm>
+        <MessageForm onSubmit={handleSendMessage}></MessageForm>
       </div>
 
       {

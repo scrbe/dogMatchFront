@@ -31,11 +31,11 @@ function Navbar() {
           <Link to={`/profile/${user.id}`}>
             <img src={profileIcon} alt="logo" id="logo"></img>
           </Link>
-          <Logout className="logout-button">Logout</Logout>
+          <Logout className="log-button">Logout</Logout>
         </div>
       )}
       {user.isLogged || (
-        <Link to="/login" className="logout-button">
+        <Link to="/login" className="log-button">
           Login
         </Link>
       )}

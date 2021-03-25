@@ -18,7 +18,7 @@ function DogForm({ onSubmit }) {
   };
 
   const handleUpload = async (event) => {
-    setImage(false); // por qué hacemos esto si este es el estado inicial ? setImage(false) --> setImage(true)
+    setImage(false);
     const img = event.target.files;
     console.log("IMG -->", img);
     const uploadImg = new FormData();

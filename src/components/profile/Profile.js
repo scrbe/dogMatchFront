@@ -43,7 +43,9 @@ function UserProfile() {
           user.ownedDogs.map((dog) => {
             return (
               <div key={dog._id}>
-                <img src={dog.dogImage} alt={dog.name} className="img"></img>
+                <Link to={`/dogs/${dog._id}`}>
+                  <img src={dog.dogImage} alt={dog.name} className="img"></img>
+                </Link>
 
                 <h4>
                   <Link to={`/dogs/${dog._id}`}>Name: {dog.name}</Link>
@@ -61,8 +63,10 @@ function UserProfile() {
           user.favoriteDogs.map((dog) => {
             return (
               <div key={dog._id}>
-                <img src={dog.dogImage} alt={dog.name} className="img"></img>
-                <h4>Name: {dog.name}</h4>
+                <Link to={`/dogs/${dog._id}`}>Name: {dog.name}</Link>
+                <Link to={`/dogs/${dog._id}`}>
+                  <img src={dog.dogImage} alt={dog.name} className="img"></img>
+                </Link>
                 <h3>Age: {dog.age} years old</h3>
                 <h3>Breed: {dog.breed}</h3>
               </div>
@@ -70,7 +74,7 @@ function UserProfile() {
           })}
       </div>
       <div>
-        <h2>User's Requests:</h2>
+        <h2>User's Messages:</h2>
 
         {user.requests &&
           user.requests.map((request) => {

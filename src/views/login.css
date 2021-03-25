@@ -1,0 +1,12 @@
+.log-container {
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 50px 10px 150px 10px;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+}
