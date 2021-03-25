@@ -1,65 +1,49 @@
-.dog-list {
+.profile-container {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
-.dog-card {
+.user-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info {
+  font-weight: 300;
+}
+
+.dogs-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.profile-dog-card {
+  height: 50%;
+  width: 35%;
   display: flex;
   flex-direction: column;
   margin: 20px 20px 10px 20px;
   border-radius: 10px;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12);
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
-.dog-img {
+.profile-dog-img {
   width: 100%;
   height: 200px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-.dog-details {
-  padding-left: 10px;
-}
-
-.dog-title {
+.profile-dog-title {
   color: #46046f;
-}
-
-.dog-info {
-  font-weight: 300;
-}
-
-.view-button {
-  align-self: center;
   text-decoration: none;
-  background-color: #46046f;
-  padding: 10px 14px;
-  color: white;
-  text-align: center;
-  border-radius: 25px;
-  margin: 20px 0px;
-  font-size: 13px;
-  font-weight: 600;
-  border: 2px solid #46046f;
-}
-
-.view-button:hover {
-  align-self: center;
-  text-decoration: none;
-  border: 2px solid #46046f;
-  background-color: white;
-  padding: 10px 14px;
-  color: #46046f;
-  text-align: center;
-  border-radius: 25px;
-  margin: 20px 0px;
-  font-size: 13px;
-  font-weight: 600;
 }
 
 @media (max-width: 600px) {
@@ -71,7 +55,7 @@
     flex-wrap: wrap;
   }
 
-  .dog-card {
+  .profile-dog-card {
     width: 75%;
     display: flex;
     flex-direction: column;
@@ -84,15 +68,15 @@
 }
 
 @media (min-width: 651px) {
-  .dog-list {
+  .dogs-container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
   }
 
-  .dog-card {
-    width: 35%;
+  .profile-dog-card {
+    width: 45%;
     display: flex;
     margin: 20px 20px 10px 20px;
     border-radius: 10px;
@@ -110,7 +94,7 @@
     flex-wrap: wrap;
   }
 
-  .dog-card {
+  .profile-dog-card {
     width: 25%;
     display: flex;
     margin: 20px 20px 10px 20px;

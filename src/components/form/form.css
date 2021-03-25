@@ -1,0 +1,45 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-container {
+  padding-top: 30px;
+}
+
+.login-btn {
+  width: 100%;
+  background-color: #bd93d3;
+  color: white;
+  font-family: "Grandstander", cursive;
+  font-weight: 700;
+  padding: 11px;
+  border-radius: 25px;
+  border: 2px solid #bd93d3;
+}
+
+.login-btn:hover {
+  width: 100%;
+  background-color: white;
+  color: #bd93d3;
+  font-family: "Grandstander", cursive;
+  font-weight: 700;
+  padding: 11px;
+  border-radius: 25px;
+  border: 2px solid #bd93d3;
+}
+
+.form-field {
+  width: 100%;
+  background-color: #e4d9e7;
+  color: gray;
+  font-family: "Grandstander", cursive;
+  font-weight: 700;
+  padding: 7px;
+  border-radius: 25px;
+  border: 2px solid #e4d9e7;
+}
+
+.input-container {
+  padding-top: 15px;
+}

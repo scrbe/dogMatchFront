@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth } from "../../context/AuthContext.utils";
+import "../../views/login.css";
 
 function Logout() {
   const { handleLogout } = useAuth();

@@ -7,10 +7,9 @@ import "./navbar.css";
 function Navbar() {
   const { user } = useAuth();
 
-  const pawImg =
-    "https://www.kindpng.com/picc/m/195-1951786_purple-dog-paw-print-hd-png-download.png";
+  const pawImg = "../../../paw-no-background.png";
   const profileIcon =
-    "https://i.pinimg.com/736x/3f/94/70/3f9470b34a8e3f526dbdb022f9f19cf7.jpg";
+    "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg";
   const dogIcon =
     "https://pupuphooray.com/wp-content/uploads/2019/03/dog-icon.png";
   return (
@@ -31,11 +30,11 @@ function Navbar() {
           <Link to={`/profile/${user.id}`}>
             <img src={profileIcon} alt="logo" id="logo"></img>
           </Link>
-          <Logout className="log-button">Logout</Logout>
+          <Logout className="logout-button">Logout</Logout>
         </div>
       )}
       {user.isLogged || (
-        <Link to="/login" className="log-button">
+        <Link to="/login" className="login-button">
           Login
         </Link>
       )}
