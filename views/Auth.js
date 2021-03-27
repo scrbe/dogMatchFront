@@ -12,9 +12,7 @@ function Auth() {
   const handleLogin = async (user) => {
     try {
       const { data } = await login(user);
-      console.log(data);
       localStorage.setItem("user", JSON.stringify(data.user));
-      console.log("data.user -->", data.user);
       setUser({ user: data.user });
       push("/");
     } catch (error) {
@@ -26,9 +24,7 @@ function Auth() {
   const handleSignUp = async (user) => {
     try {
       const { data } = await signup(user);
-      console.log(data);
       localStorage.setItem("user", JSON.stringify(data.user));
-      console.log("data.user -->", data.user);
       setUser({ user: data.user });
       push("/");
     } catch (error) {

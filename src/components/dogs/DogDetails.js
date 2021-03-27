@@ -16,33 +16,42 @@ function DogDetails() {
   const { push } = useHistory();
   const params = useParams();
   const { dogId } = params;
-  console.log("USER-->", user);
 
   const [dog, setDog] = React.useState([]);
   const [editForm, setEditForm] = React.useState(false);
   const [isFav, setIsFav] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState("");
+  // const [isLoading, setLoading] = React.useState(false);
 
   const getOneDog = async (dogId) => {
-    const { data: dog } = await getOneDogService(dogId);
-    console.log("DOG -->", dog);
-    setDog(dog);
-    let userInfo = await getUser();
-    userInfo.favoriteDogs.forEach((dog) => {
-      if (dog._id === dogId) {
-        setIsFav(true);
+    try {
+      // setLoading(true);
+      const { data: dog } = await getOneDogService(dogId);
+      console.log("dog :>> ", dog);
+      setDog(dog);
+      let userInfo = await getUser();
+      userInfo.favoriteDogs.forEach((dog) => {
+        if (dog._id === dogId) {
+          setIsFav(true);
+        }
+      });
+      // setLoading(false);
+    } catch (error) {
+      const noDog = error.response.data.message === "this dog does not exist";
+      if (noDog) {
+        setErrorMessage("this dog does not exist");
       }
-    });
-    console.log("userInfo :>> ", userInfo);
+      console.log("error :>> ", error);
+      // setLoading(false);
+    }
   };
 
   const getUser = async () => {
     const { data: userInfo } = await getUserService(user.id);
-    console.log("userInfo :>> ", userInfo);
     return userInfo;
   };
 
   let isDogOwner = user.id === dog.owner;
-  console.log("isDogOwner", isDogOwner);
 
   const handleClick = async () => {
     const { data } = await addToFavoritesService(dogId);
@@ -54,7 +63,6 @@ function DogDetails() {
   };
 
   const handleDelete = async () => {
-    console.log(dogId);
     await deleteDogService(dogId);
     push("/dogs");
   };
@@ -62,21 +70,25 @@ function DogDetails() {
   const handleUpdate = async (state) => {
     const { data: updatedDog } = await updateDogService(dogId, state);
     setDog(updatedDog);
-    console.log("dog updated");
   };
 
   const handleSendMessage = async (messageBody) => {
     const { data: newMessage } = await sendMessagesService(dogId, messageBody);
-    console.log("NEWMESSAGE-->", newMessage);
   };
 
   React.useEffect(() => {
     getOneDog(dogId);
   }, [dogId]);
 
+  // HANDLE ERROR
+  if (errorMessage) {
+    return <h1>{errorMessage}</h1>;
+  }
+
   return (
     <div className="dog-detail-view">
       <div key={dog._id} className="dog-detail-card">
+        {errorMessage && errorMessage}
         <div className="img-container">
           <h2 className="dog-title">{dog.name}</h2>
           <img

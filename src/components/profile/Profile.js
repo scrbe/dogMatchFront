@@ -10,11 +10,20 @@ function UserProfile() {
   const params = useParams();
   const { userId } = params;
   const [user, setUser] = React.useState([]);
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   const getUser = async (userId) => {
-    const { data: userInfo } = await getUserService(userId);
-    console.log("user", userInfo);
-    setUser(userInfo);
+    try {
+      const { data: userInfo } = await getUserService(userId);
+      console.log("userInfo :>> ", userInfo);
+      setUser(userInfo);
+    } catch (error) {
+      const noUser = error.response.data.message === "this user does not exist";
+      if (noUser) {
+        setErrorMessage("this user does not exist");
+      }
+      console.log("error :>> ", error);
+    }
   };
 
   React.useEffect(() => {
@@ -23,7 +32,6 @@ function UserProfile() {
 
   const handleSubmit = async (dogForm) => {
     const { data: newDog } = await createDogService(dogForm);
-    console.log("NEWDOG-->", newDog);
     // podría llamar a getUser, pero para evitar una llamada adicional a la BD:
     const updatedUser = { ...user, ownedDogs: [...user.ownedDogs, newDog] };
     setUser(updatedUser);
@@ -34,8 +42,12 @@ function UserProfile() {
   return (
     <div key={user._id} className="profile-container">
       <div className="user-info-container">
-        {user && <img src={profileIcon} alt={user.email} className="img"></img>}
-
+        {user && (
+          <img src={profileIcon} alt={user.username} className="img"></img>
+        )}
+        <h4>
+          Username: <span className="user-info">{user.username}</span>
+        </h4>
         <h4>
           Email: <span className="user-info">{user.email}</span>
         </h4>
@@ -109,21 +121,25 @@ function UserProfile() {
             );
           })}
       </div>
-      <div>
+      <div className="messages-container">
         <h2>Messages Sent:</h2>
 
         {user.requests &&
           user.requests.map((request) => {
             return (
               <div key={request._id}>
-                <h4>Author: {request.author}</h4>
-                <h4>Message for {request.dog}:</h4>
+                <h4>
+                  Author: <span className="dog-info">{request.author}</span>{" "}
+                </h4>
+                <h4>
+                  Message for: <span className="dog-info">{request.dog}</span>
+                </h4>
                 <p>{request.message}</p>
               </div>
             );
           })}
       </div>
-      <div>
+      <div className="create-dog-container">
         <h2>Create your own Dog:</h2>
         <DogForm onSubmit={handleSubmit}></DogForm>
       </div>

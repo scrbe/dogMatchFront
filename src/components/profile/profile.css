@@ -46,6 +46,17 @@
   text-decoration: none;
 }
 
+.create-dog-container {
+  margin-top: 50px;
+  width: 50%;
+}
+
+.messages-container {
+  text-align: center;
+  margin-top: 50px;
+  width: 50%;
+}
+
 @media (max-width: 600px) {
   .dog-list {
     display: flex;
@@ -95,7 +106,7 @@
   }
 
   .profile-dog-card {
-    width: 25%;
+    width: 40%;
     display: flex;
     margin: 20px 20px 10px 20px;
     border-radius: 10px;

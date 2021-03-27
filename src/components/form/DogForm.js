@@ -1,5 +1,6 @@
 import React from "react";
 import { addImageService } from "../../service/dog.service";
+import "./form.css";
 
 function DogForm({ onSubmit }) {
   const initialState = {
@@ -20,12 +21,9 @@ function DogForm({ onSubmit }) {
   const handleUpload = async (event) => {
     setImage(false);
     const img = event.target.files;
-    console.log("IMG -->", img);
     const uploadImg = new FormData();
     uploadImg.append("dogImage", img[0]);
-    console.log("uploadImg -->", uploadImg);
     const { data } = await addImageService(uploadImg);
-    console.log("Image -->", data);
     setState({ ...state, dogImage: data });
     setImage(true);
   };
@@ -45,6 +43,7 @@ function DogForm({ onSubmit }) {
         value={state.name}
         onChange={handleChange}
         required
+        className="form-field"
       ></input>
       <label htmlFor="breed">Breed</label>
       <input
@@ -53,6 +52,7 @@ function DogForm({ onSubmit }) {
         value={state.breed}
         onChange={handleChange}
         required
+        className="form-field"
       ></input>
       <label htmlFor="gender">Gender</label>
       <input
@@ -61,6 +61,7 @@ function DogForm({ onSubmit }) {
         value={state.gender}
         onChange={handleChange}
         required
+        className="form-field"
       ></input>
       <label htmlFor="age">Age</label>
       <input
@@ -69,6 +70,7 @@ function DogForm({ onSubmit }) {
         value={state.age}
         onChange={handleChange}
         required
+        className="form-field"
       ></input>
       <label htmlFor="description">Description</label>
       <textarea
@@ -77,6 +79,7 @@ function DogForm({ onSubmit }) {
         rows="3"
         value={state.description}
         onChange={handleChange}
+        className="form-field"
       ></textarea>
       <label htmlFor="image">Upload Image</label>
       <input
@@ -85,7 +88,7 @@ function DogForm({ onSubmit }) {
         value={state.image}
         onChange={handleUpload}
       ></input>
-      <button type="submit" disabled={!image}>
+      <button type="submit" disabled={!image} className="login-btn">
         Submit
       </button>
     </form>

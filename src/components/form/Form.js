@@ -4,13 +4,25 @@ import "./form.css";
 function Form({ buttonText, onSubmit }) {
   const initialState = { email: "", password: "" };
   const [state, setState] = React.useState(initialState);
+  const [error, setError] = React.useState(false);
+  const [isLoading, setLoading] = React.useState(false);
+
   const handleChange = ({ target }) => {
+    setError(true);
     setState({ ...state, [target.name]: target.value });
   };
   const handleSubmit = (event) => {
-    event.preventDefault();
-    onSubmit(state);
-    setState(initialState);
+    try {
+      event.preventDefault();
+      setLoading(true);
+      onSubmit(state);
+      setLoading(false);
+      setState(initialState);
+    } catch (error) {
+      console.log("error :>> ", error);
+      setError(error);
+      setLoading(false);
+    }
   };
 
   return (
@@ -24,7 +36,6 @@ function Form({ buttonText, onSubmit }) {
           value={state.email}
           onChange={handleChange}
           required
-          placeholder="Your email address"
           className="form-field"
         ></input>
       </div>
@@ -37,7 +48,6 @@ function Form({ buttonText, onSubmit }) {
           value={state.password}
           onChange={handleChange}
           required
-          placeholder="Choose a safe one :)"
           className="form-field"
         ></input>
       </div>
@@ -45,6 +55,8 @@ function Form({ buttonText, onSubmit }) {
         <button type="submit" className="login-btn">
           {buttonText}
         </button>
+        {error}
+        {isLoading && "Loading..."}
       </div>
     </form>
   );

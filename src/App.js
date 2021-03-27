@@ -34,6 +34,9 @@ function App() {
         <AnonRoute exact path="/login">
           <Login />
         </AnonRoute>
+        <Route path="*">
+          <h1>Page not found</h1>
+        </Route>
       </Switch>
     </div>
   );
