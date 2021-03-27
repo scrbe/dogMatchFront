@@ -110,7 +110,7 @@ function UserProfile() {
           })}
       </div>
       <div>
-        <h2>User's Messages:</h2>
+        <h2>Messages Sent:</h2>
 
         {user.requests &&
           user.requests.map((request) => {
