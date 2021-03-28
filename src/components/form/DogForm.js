@@ -36,7 +36,7 @@ function DogForm({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
+      <label htmlFor="name">Name*</label>
       <input
         name="name"
         type="text"
@@ -45,7 +45,7 @@ function DogForm({ onSubmit }) {
         required
         className="form-field"
       ></input>
-      <label htmlFor="breed">Breed</label>
+      <label htmlFor="breed">Breed*</label>
       <input
         name="breed"
         type="text"
@@ -54,7 +54,7 @@ function DogForm({ onSubmit }) {
         required
         className="form-field"
       ></input>
-      <label htmlFor="gender">Gender</label>
+      <label htmlFor="gender">Gender*</label>
       <input
         name="gender"
         type="text"
@@ -63,7 +63,7 @@ function DogForm({ onSubmit }) {
         required
         className="form-field"
       ></input>
-      <label htmlFor="age">Age</label>
+      <label htmlFor="age">Age*</label>
       <input
         name="age"
         type="text"
@@ -72,16 +72,17 @@ function DogForm({ onSubmit }) {
         required
         className="form-field"
       ></input>
-      <label htmlFor="description">Description</label>
+      <label htmlFor="description">Description*</label>
       <textarea
         name="description"
         cols="30"
         rows="3"
         value={state.description}
         onChange={handleChange}
+        required
         className="form-field"
       ></textarea>
-      <label htmlFor="image">Upload Image</label>
+      <label htmlFor="image">Upload Image*</label>
       <input
         type="file"
         name="image"

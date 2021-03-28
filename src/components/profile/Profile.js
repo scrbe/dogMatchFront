@@ -18,8 +18,7 @@ function UserProfile() {
       console.log("userInfo :>> ", userInfo);
       setUser(userInfo);
     } catch (error) {
-      const noUser = error.response.data.message === "this user does not exist";
-      if (noUser) {
+      if (error.response.data.message === "this user does not exist") {
         setErrorMessage("this user does not exist");
       }
       console.log("error :>> ", error);
