@@ -5,9 +5,6 @@ import { Link } from "react-router-dom";
 import "./login.css";
 
 function Login() {
-  const [error, setError] = React.useState(false);
-  const [isLoading, setLoading] = React.useState(false);
-
   const { handleLogin, errorMessage } = useAuth();
   const handleSubmit = async (userForm) => {
     handleLogin(userForm);

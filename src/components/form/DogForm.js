@@ -89,9 +89,11 @@ function DogForm({ onSubmit }) {
         value={state.image}
         onChange={handleUpload}
       ></input>
-      <button type="submit" disabled={!image} className="login-btn">
-        Submit
-      </button>
+      <div className="btn-wrapper">
+        <button type="submit" disabled={!image} className="login-btn">
+          Submit
+        </button>
+      </div>
     </form>
   );
 }

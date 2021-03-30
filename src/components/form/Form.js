@@ -2,7 +2,7 @@ import React from "react";
 import "./form.css";
 
 function Form({ buttonText, onSubmit }) {
-  const initialState = { email: "", password: "" };
+  const initialState = { email: "", password: "", username: "" };
   const [state, setState] = React.useState(initialState);
   const [error, setError] = React.useState(false);
   const [isLoading, setLoading] = React.useState(false);
@@ -25,11 +25,11 @@ function Form({ buttonText, onSubmit }) {
     }
   };
 
+  let isSignUp = buttonText === "Signup";
   return (
     <form onSubmit={handleSubmit} className="form">
       <div className="input-container">
         <label htmlFor="email">Email</label>
-
         <input
           name="email"
           type="text"
@@ -39,6 +39,19 @@ function Form({ buttonText, onSubmit }) {
           className="form-field"
         ></input>
       </div>
+      {isSignUp && (
+        <div className="input-container">
+          <label htmlFor="username">Username</label>
+          <input
+            name="username"
+            type="text"
+            value={state.username}
+            onChange={handleChange}
+            required
+            className="form-field"
+          ></input>
+        </div>
+      )}
 
       <div className="input-container">
         <label htmlFor="password">Password</label>

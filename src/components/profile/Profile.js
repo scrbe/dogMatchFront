@@ -16,11 +16,12 @@ function UserProfile() {
     try {
       const { data: userInfo } = await getUserService(userId);
       console.log("userInfo :>> ", userInfo);
+      console.log("userInfo TEST :>> ", userInfo.outbox);
       setUser(userInfo);
     } catch (error) {
-      if (error.response.data.message === "this user does not exist") {
-        setErrorMessage("this user does not exist");
-      }
+      // if (error.response.data.message === "this user does not exist") {
+      //   setErrorMessage("this user does not exist");
+      // }
       console.log("error :>> ", error);
     }
   };
@@ -36,23 +37,28 @@ function UserProfile() {
     setUser(updatedUser);
   };
 
-  const profileIcon =
-    "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg";
   return (
     <div key={user._id} className="profile-container">
       <div className="user-info-container">
         {user && (
-          <img src={profileIcon} alt={user.username} className="img"></img>
+          <img
+            src={user.userImage}
+            alt={user.username}
+            className="profile-img"
+          ></img>
         )}
-        <h4>
-          Username: <span className="user-info">{user.username}</span>
-        </h4>
-        <h4>
-          Email: <span className="user-info">{user.email}</span>
-        </h4>
+        <div>
+          <h3>
+            Username: <span className="user-info">{user.username}</span>
+          </h3>
+          <h3>
+            Email: <span className="user-info">{user.email}</span>
+          </h3>
+          <button className="edit-profile-btn">Edit Profile</button>
+        </div>
       </div>
+      <h2>User's Dogs:</h2>
       <div className="dogs-container">
-        <h2>User's Dogs:</h2>
         {user.ownedDogs &&
           user.ownedDogs.map((dog) => {
             return (
@@ -85,9 +91,10 @@ function UserProfile() {
             );
           })}
       </div>
-      <div className="dogs-container">
-        <h2>User's Favorite Dogs:</h2>
 
+      <h2>User's Favorite Dogs:</h2>
+
+      <div className="dogs-container">
         {user.favoriteDogs &&
           user.favoriteDogs.map((dog) => {
             return (
@@ -122,18 +129,20 @@ function UserProfile() {
       </div>
       <div className="messages-container">
         <h2>Messages Sent:</h2>
-
-        {user.requests &&
-          user.requests.map((request) => {
+        {user.inbox &&
+          user.inbox.map((message) => {
+            console.log("message", message);
             return (
-              <div key={request._id}>
+              <div key={message._id}>
                 <h4>
-                  Author: <span className="dog-info">{request.author}</span>{" "}
+                  Author:
+                  <span className="dog-info">{message.author.username}</span>
                 </h4>
                 <h4>
-                  Message for: <span className="dog-info">{request.dog}</span>
+                  Message for dog:{" "}
+                  <span className="dog-info">{message.dog}</span>
                 </h4>
-                <p>{request.message}</p>
+                <p>{message.message}</p>
               </div>
             );
           })}

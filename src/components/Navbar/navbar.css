@@ -1,9 +1,10 @@
 .navbar {
   display: flex;
   justify-content: space-around;
+  padding: 10px 0px 15px 0px;
 }
 
-#logo {
+.logo {
   width: 50px;
   margin: auto;
 }

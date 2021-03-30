@@ -13,17 +13,22 @@ function MessageForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="message">Message</label>
-      <textarea
-        name="message"
-        type="text"
-        value={state.message}
-        onChange={handleChange}
-        required
-      ></textarea>
-      <button type="submit">Submit</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="message"></label>
+        <textarea
+          name="message"
+          type="text"
+          value={state.message}
+          onChange={handleChange}
+          required
+          className="form-field"
+        ></textarea>
+        <button type="submit" className="login-btn">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 }
 

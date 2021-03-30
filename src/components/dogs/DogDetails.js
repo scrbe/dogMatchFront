@@ -8,6 +8,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.utils";
 import MessageForm from "../form/MessageForm";
 import { sendMessagesService } from "../../service/message.service";
+import { Link } from "react-router-dom";
 import DogForm from "../form/DogForm";
 import "./dogDetails.css";
 
@@ -20,11 +21,13 @@ function DogDetails() {
   const [dog, setDog] = React.useState([]);
   const [editForm, setEditForm] = React.useState(false);
   const [isFav, setIsFav] = React.useState(false);
+  const [isOwnDog, setIsOwnDog] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState("");
   // const [isLoading, setLoading] = React.useState(false);
 
   const getOneDog = async (dogId) => {
     try {
+      setIsOwnDog(false);
       // setLoading(true);
       const { data: dog } = await getOneDogService(dogId);
       console.log("dog :>> ", dog);
@@ -35,6 +38,9 @@ function DogDetails() {
           setIsFav(true);
         }
       });
+      if (userInfo._id === user.id) {
+        setIsOwnDog(true);
+      }
       // setLoading(false);
     } catch (error) {
       const noDog = error.response.data.message === "this dog does not exist";
@@ -50,8 +56,6 @@ function DogDetails() {
     const { data: userInfo } = await getUserService(user.id);
     return userInfo;
   };
-
-  let isDogOwner = user.id === dog.owner;
 
   const handleClick = async () => {
     const { data } = await addToFavoritesService(dogId);
@@ -91,27 +95,15 @@ function DogDetails() {
         {errorMessage && errorMessage}
         <div className="img-container">
           <h2 className="dog-title">{dog.name}</h2>
+          {/* <Link to={`/profile/${dog.owner._id}`}>
+            <p className="dog-title">User: {dog.owner.username}</p>
+          </Link> */}
+
           <img
             src={dog.dogImage}
             alt={dog.name}
             className="dog-detail-img"
           ></img>
-        </div>
-
-        <div className="dog-detail-text">
-          <h3>
-            Age: <span className="dog-info">{dog.age} years old</span>
-          </h3>
-          <h3>
-            Breed: <span className="dog-info">{dog.breed}</span>
-          </h3>
-          <h3>
-            Gender: <span className="dog-info">{dog.gender}</span>
-          </h3>
-          <div className="dog-description">
-            <h3>Description:</h3>
-            <p className="dog-info">{dog.description}</p>
-          </div>
           {isFav || (
             <button onClick={handleClick} className="fav-button">
               Add to Favorites
@@ -123,27 +115,53 @@ function DogDetails() {
             </button>
           )}
         </div>
-      </div>
-      <div>
-        <h4>Send a request</h4>
-        <MessageForm onSubmit={handleSendMessage}></MessageForm>
+
+        <div className="dog-detail-text">
+          <div className="dog-detail-wrapper">
+            <h3>
+              Age: <span className="dog-info">{dog.age} years old</span>
+            </h3>
+            <h3>
+              Breed: <span className="dog-info">{dog.breed}</span>
+            </h3>
+            <h3>
+              Gender: <span className="dog-info">{dog.gender}</span>
+            </h3>
+          </div>
+          <div className="dog-description">
+            <h3>Description:</h3>
+            <p className="dog-info">{dog.description}</p>
+          </div>
+        </div>
       </div>
 
       {
-        <div>
-          {isDogOwner && (
+        <div className="edit-btn-wrapper">
+          {isOwnDog && (
             <div>
-              <button onClick={handleDelete}>Delete Dog</button>
-              <button onClick={handleEditFormDisplay}>Edit Dog</button>
-              {editForm && (
-                <DogForm onSubmit={handleUpdate}>
-                  <h4>Edit your dog:</h4>
-                </DogForm>
-              )}
+              <button onClick={handleDelete} className="edit-btn">
+                Delete Dog
+              </button>
+
+              <button onClick={handleEditFormDisplay} className="edit-btn">
+                Edit Dog
+              </button>
             </div>
           )}
         </div>
       }
+
+      <div className="edit-btn-wrapper">
+        {editForm && (
+          <DogForm onSubmit={handleUpdate}>
+            <h4>Edit your dog:</h4>
+          </DogForm>
+        )}
+      </div>
+      <div className="request-container">
+        <h4>Send a request</h4>
+        <MessageForm onSubmit={handleSendMessage}></MessageForm>
+      </div>
     </div>
   );
 }

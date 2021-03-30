@@ -8,6 +8,7 @@ import Signup from "./views/Signup";
 import Login from "./views/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/profile/Profile";
+import Inbox from "./components/messages/Inbox";
 import Home from "./views/Home";
 import "./App.css";
 
@@ -21,6 +22,9 @@ function App() {
         </Route>
         <Route exact path="/dogs">
           <DogList />
+        </Route>
+        <Route exact path="/messages">
+          <Inbox />
         </Route>
         <Route exact path="/dogs/:dogId">
           <DogDetails />

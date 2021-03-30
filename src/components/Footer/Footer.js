@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.utils";
 import "./navbar.css";
 
-function Navbar() {
+function Footer() {
   const { user } = useAuth();
 
   const pawImg = "../../../paw-no-background.png";
@@ -13,22 +13,22 @@ function Navbar() {
   const dogIcon =
     "https://pupuphooray.com/wp-content/uploads/2019/03/dog-icon.png";
   return (
-    <div className="navbar">
+    <div className="footer">
       <div>
         <Link to={"/"}>
-          <img src={pawImg} alt="logo" className="logo"></img>
+          <img src={pawImg} alt="logo" id="logo"></img>
         </Link>
       </div>
       <div>
         <Link to={"/dogs"}>
-          <img src={dogIcon} alt="logo" className="logo"></img>
+          <img src={dogIcon} alt="logo" id="logo"></img>
         </Link>
       </div>
 
       {user.isLogged && (
-        <div className="navbar-int-container">
+        <div className="footer-int-container">
           <Link to={`/profile/${user.id}`}>
-            <img src={profileIcon} alt="logo" className="logo"></img>
+            <img src={profileIcon} alt="logo" id="logo"></img>
           </Link>
           <Logout className="logout-button">Logout</Logout>
         </div>
@@ -41,4 +41,4 @@ function Navbar() {
     </div>
   );
 }
-export default Navbar;
+export default Footer;
